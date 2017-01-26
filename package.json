@@ -8,6 +8,7 @@
     "webpack": "webpack --progress --profile --colors",
     "compile": "babel ./server -d ./DIST ",
     "bs": "npm run compile && npm run webpack && npm run start",
+    "post-install": "npm run compile && npm run webpack",
     "start": "node ./DIST/server.js"
   },
   "dependencies": {
