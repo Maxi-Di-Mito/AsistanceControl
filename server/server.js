@@ -11,8 +11,9 @@ app.use(express.static(path.join(__dirname, '/../www/static/')));
 
 app.use(Router);
 
+const port = process.env.PORT || 9001;
 
-app.listen(9001, () => {
+app.listen(port, () => {
     console.log("Andando");
 });
 
