@@ -15,9 +15,11 @@ class DateSelector extends React.Component {
 
     render() {
         return <DatePicker
+            id="DatePicker"
             hintText="Fecha"
             value={this.props.selectedDate}
             onChange={(event, date) => this.props.onDateSelected(date)}
+            autoOk
         />
     }
 

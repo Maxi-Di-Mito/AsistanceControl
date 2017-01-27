@@ -37,6 +37,7 @@ class PersonSelector extends React.Component {
     render() {
 
         return <AutoComplete
+            id="PersonSelector"
             filter={AutoComplete.fuzzyFilter}
             dataSource={this.mapPersonToItem(this.props.persons)}
             maxSearchResults={7}

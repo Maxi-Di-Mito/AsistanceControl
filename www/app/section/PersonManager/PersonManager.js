@@ -2,7 +2,7 @@
  * Created by maximiliano.dimito on 1/26/2017.
  */
 import React from 'react';
-
+import PersonListator from '../AsistanceTaker/subComponents/PersonListator';
 
 
 class PersonManager extends React.Component{
@@ -14,7 +14,9 @@ class PersonManager extends React.Component{
 
         return (
             <div>
-
+                <PersonInputManager onSubmit={this.generatePerson}/>
+                <PersonFilter onFilter={this.filterPersons}/>
+                <PersonListator personsToShow={this.state.persons}/>
             </div>
         )
     }

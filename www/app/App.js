@@ -21,6 +21,7 @@ const theme = {
     toolbar:{
         backgroundColor: amber400
     }
+
 };
 
 

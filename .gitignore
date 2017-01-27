@@ -2,3 +2,4 @@
 /babel_cache/
 /DIST/
 /.idea/
+www/static/js/bundle.js

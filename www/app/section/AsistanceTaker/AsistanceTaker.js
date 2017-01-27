@@ -44,7 +44,7 @@ class AsistanceTaker extends React.Component{
                }
            );
         });
-    }
+    };
 
     generateAsistance = (person) => {
         SuperAgent.Asistances.create(person, this.state.selectedDate.toISOString().split('T')[0]).then( (res) => {
@@ -54,13 +54,35 @@ class AsistanceTaker extends React.Component{
                 }
             );
         });
-    }
+    };
+
+
+    deleteAsistance = (index) => {
+        console.log("FUNC");
+        const asistance = this.state.asistances[index];
+
+        SuperAgent.Asistances.delete(asistance).then( (res) => {
+            this.setState(
+                {
+                    asistances: res.asistances
+                }
+            )
+        });
+    };
+
+
 
 
 
     render(){
 
+
         if(!this.state.fetching) {
+
+            const persons = this.state.asistances.map( (a) => {
+                return a.person;
+            });
+
             return (
                 <Flex p={2} align='center'>
                     <Box px={6} col={6}>
@@ -68,7 +90,7 @@ class AsistanceTaker extends React.Component{
                         <PersonSelector persons={this.state.persons} onPersonSelected={this.generateAsistance}/>
                     </Box>
                     <Box px={6} col={6}>
-                        <PersonListator personsToShow={this.state.asistances}/>
+                        <PersonListator onDeletePerson={this.deleteAsistance} personsToShow={persons}/>
                     </Box>
                 </Flex>
             );
