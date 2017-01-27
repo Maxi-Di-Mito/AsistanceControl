@@ -27,11 +27,11 @@ class PersonSelector extends React.Component {
                 )
             }
         });
-    }
+    };
 
     handleNewRequest = (chosenRequest, index) => {
         this.props.onPersonSelected(this.props.persons[index]);
-    }
+    };
 
 
     render() {

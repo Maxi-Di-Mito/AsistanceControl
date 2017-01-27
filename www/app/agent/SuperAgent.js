@@ -15,7 +15,8 @@ const requests = {
     get: (url) => superagent.get(url).then(responseBody),
     post: (url, body) => superagent.post(url, body).then(responseBody),
     //put: (url, body) => superagent.put(API(url), body).then(responseBody)
-    delete: (url, body) => superagent.del(url, body).then(responseBody)
+    delete: (url) => superagent.del(url).then(responseBody)
+    //headers: {"Content-Type": "application/json;charset=utf-8"}
 };
 
 /*const Movies = {
@@ -33,9 +34,7 @@ const Asistances = {
         date: date,
         person: person
     }),
-    delete: (asistance) => requests.delete('http://asistancechecker.herokuapp.com/api/asistances/',{
-        asistance: asistance
-    })
+    delete: (asistance) => requests.delete(`http://asistancechecker.herokuapp.com/api/asistances/${asistance._id}`)
 
 };
 

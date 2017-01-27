@@ -5,9 +5,9 @@ import React from 'react';
 import LinearProgress from 'material-ui/LinearProgress';
 import SuperAgent from '../../agent/SuperAgent';
 import {Flex, Box} from 'reflexbox';
-import DateSelector from './subComponents/DateSelector';
-import PersonSelector from './subComponents/PersonSelector';
-import PersonListator from './subComponents/PersonListator';
+import DateSelector from '../subComponents/DateSelector';
+import PersonSelector from '../subComponents/PersonSelector';
+import PersonListator from '../subComponents/PersonListator';
 
 class AsistanceTaker extends React.Component{
 
@@ -60,13 +60,15 @@ class AsistanceTaker extends React.Component{
     deleteAsistance = (index) => {
         console.log("FUNC");
         const asistance = this.state.asistances[index];
-
-        SuperAgent.Asistances.delete(asistance).then( (res) => {
-            this.setState(
-                {
-                    asistances: res.asistances
-                }
-            )
+        console.log(`Asistance: ${asistance}`);
+        SuperAgent.Asistances.delete(asistance).then( (resD) => {
+            SuperAgent.Asistances.getByDate(asistance.date.toISOString().split('T')[0]).then( (resA) => {
+                this.setState(
+                    {
+                        asistances: resA.asistances
+                    }
+                )
+            });
         });
     };
 

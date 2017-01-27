@@ -2,7 +2,7 @@
  * Created by maximiliano.dimito on 1/26/2017.
  */
 import React from 'react';
-import PersonListator from '../AsistanceTaker/subComponents/PersonListator';
+import PersonListator from '../subComponents/PersonListator';
 
 
 class PersonManager extends React.Component{
