@@ -14,6 +14,10 @@ class PersonSelector extends React.Component {
         onPersonSelected : PropTypes.func.isRequired
     };
 
+    state ={
+        text:''
+    }
+
 
     mapPersonToItem = (persons) => {
         return persons.map((person) => {
@@ -31,11 +35,11 @@ class PersonSelector extends React.Component {
 
     handleNewRequest = (chosenRequest, index) => {
         this.props.onPersonSelected(this.props.persons[index]);
+
     };
 
 
     render() {
-
         return <AutoComplete
             id="PersonSelector"
             filter={AutoComplete.fuzzyFilter}
@@ -43,8 +47,6 @@ class PersonSelector extends React.Component {
             maxSearchResults={7}
             onNewRequest={this.handleNewRequest}
         />
-
-
     }
 
 

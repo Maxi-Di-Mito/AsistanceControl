@@ -58,17 +58,13 @@ class AsistanceTaker extends React.Component{
 
 
     deleteAsistance = (index) => {
-        console.log("FUNC");
         const asistance = this.state.asistances[index];
-        console.log(`Asistance: ${asistance}`);
         SuperAgent.Asistances.delete(asistance).then( (resD) => {
-            SuperAgent.Asistances.getByDate(asistance.date.toISOString().split('T')[0]).then( (resA) => {
-                this.setState(
-                    {
-                        asistances: resA.asistances
-                    }
-                )
-            });
+            this.setState(
+                {
+                    asistances: resD.asistances
+                }
+            );
         });
     };
 

@@ -9,7 +9,12 @@ const superagent = superagentPromise(_superagent, global.Promise);
 
 const responseBody = res => res.body;
 
-//const API = (url) => `${config.API_PREFIX}${url}`;
+const API = (url) => {
+    if (process.env.PORT)
+        return `http://asistancechecker.herokuapp.com/api${url}`;
+    else
+        return `http://localhost:8080/api${url}`;
+}
 
 const requests = {
     get: (url) => superagent.get(url).then(responseBody),
@@ -24,17 +29,19 @@ const requests = {
 };*/
 
 const Persons = {
-    getAll: () => requests.get('http://asistancechecker.herokuapp.com/api/persons/')
+    getAll: () => requests.get(API('/persons/'))
 };
 
 const Asistances = {
-    getAll: () => requests.get('http://asistancechecker.herokuapp.com/api/asistances/'),
-    getByDate: (date) => requests.get(`http://asistancechecker.herokuapp.com/api/asistances/${date}`),
-    create: (person,date) => requests.post('http://asistancechecker.herokuapp.com/api/asistances/',{
+    getAll: () => requests.get(API('/asistances/')),
+    getByDate: (date) => requests.get(API(`/asistances/${date}`)),
+    create: (person,date) => requests.post(API('/asistances/'),{
         date: date,
         person: person
     }),
-    delete: (asistance) => requests.delete(`http://asistancechecker.herokuapp.com/api/asistances/${asistance._id}`)
+    delete: (asistance) => requests.post(API('/asistances/delete'),{
+        asistance: asistance
+    })
 
 };
 
