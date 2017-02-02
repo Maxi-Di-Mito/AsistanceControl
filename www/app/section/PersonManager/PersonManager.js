@@ -12,13 +12,16 @@ class PersonManager extends React.Component{
 
     render(){
 
-        return (
+
+        return <div>PERSON MANAGER</div>
+
+        /*return (
             <div>
                 <PersonInputManager onSubmit={this.generatePerson}/>
                 <PersonFilter onFilter={this.filterPersons}/>
                 <PersonListator personsToShow={this.state.persons}/>
             </div>
-        )
+        )*/
     }
 }
 

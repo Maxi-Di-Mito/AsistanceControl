@@ -28,12 +28,28 @@ const theme = {
 export default class App extends Component{
 
 
+    state = {
+        view: <AsistanceTaker/>
+
+    };
+
+
+    changeView = (view) =>{
+        this.setState({
+            view: view
+        });
+    };
+
+
     render(){
+
         return (
             <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
                 <div>
-                    <Header/>
-                    <AsistanceTaker/>
+                    <Header changeView={this.changeView}/>
+                    {
+                        (this.state.view)
+                    }
                 </div>
             </MuiThemeProvider>
         );
