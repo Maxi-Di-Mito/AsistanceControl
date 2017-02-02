@@ -18,7 +18,7 @@ const views = {
 
 export default class Header extends React.Component{
 
-    propTypes = {
+    static propTypes = {
         changeView: PropTypes.func.isRequired
     };
 

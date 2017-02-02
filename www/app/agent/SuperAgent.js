@@ -10,10 +10,7 @@ const superagent = superagentPromise(_superagent, global.Promise);
 const responseBody = res => res.body;
 
 const API = (url) => {
-    if (process.env.PORT)
-        return `http://asistancechecker.herokuapp.com/api${url}`;
-    else
-        return `http://localhost:8080/api${url}`;
+    return `/api${url}`;
 }
 
 const requests = {
