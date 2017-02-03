@@ -24,19 +24,32 @@ routerApi.get("/persons/", (req, res) => {
 
 routerApi.post("/persons/", (req, res) => {
     let response = false;
-
     let p = new Person();
     p.name = req.body.name;
     p.lastName = req.body.lastName;
     p.save().then((savedPerson) => {
-        if(savedPerson){
-            response = true
-        }
-        res.json({
-            response: response
+        Person.find({}).then(function (data){
+            res.json({
+                response: response,
+                persons: data
+            });
+        });
+
+    });
+});
+
+routerApi.post('/persons/delete', (req, res) => {
+    Person.findOneAndRemove( {_id: req.body._id}, (deleted) => {
+        Person.find({}).then( (data) => {
+            res.json({
+                response:deleted,
+                persons: data
+            })
         });
     });
 });
+
+
 
 routerApi.get('/asistances/', (req, res) => {
     console.log("TRAIGO TODOS");

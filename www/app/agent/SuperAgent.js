@@ -26,7 +26,9 @@ const requests = {
 };*/
 
 const Persons = {
-    getAll: () => requests.get(API('/persons/'))
+    getAll: () => requests.get(API('/persons/')),
+    delete: (person) => requests.post(API('/persons/delete'), person),
+    create: (person) => requests.post(API('/persons/'), person)
 };
 
 const Asistances = {

@@ -35,6 +35,9 @@ class PersonSelector extends React.Component {
 
     handleNewRequest = (chosenRequest, index) => {
         this.props.onPersonSelected(this.props.persons[index]);
+        this.setState({
+            text:''
+        });
 
     };
 
@@ -46,6 +49,8 @@ class PersonSelector extends React.Component {
             dataSource={this.mapPersonToItem(this.props.persons)}
             maxSearchResults={7}
             onNewRequest={this.handleNewRequest}
+            onUpdateInput={ (searchText) => { this.setState({text: searchText})} }
+            searchText={this.state.text}
         />
     }
 
