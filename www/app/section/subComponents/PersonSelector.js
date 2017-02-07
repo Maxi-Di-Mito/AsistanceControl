@@ -6,7 +6,6 @@ import AutoComplete from 'material-ui/AutoComplete';
 import MenuItem from 'material-ui/MenuItem';
 
 
-
 class PersonSelector extends React.Component {
 
     static propTypes = {
@@ -14,47 +13,46 @@ class PersonSelector extends React.Component {
         onPersonSelected : PropTypes.func.isRequired
     };
 
-    state ={
+    state = {
         text:''
-    }
-
-
-    mapPersonToItem = (persons) => {
-        return persons.map((person) => {
-            return {
-                text: `${person.lastName}, ${person.name}`,
-                value: (
-                    <MenuItem
-                        primaryText={person.lastName}
-                        secondaryText={person.name}
-                    />
-                )
-            }
-        });
     };
-
-    handleNewRequest = (chosenRequest, index) => {
-        this.props.onPersonSelected(this.props.persons[index]);
-        this.setState({
-            text:''
-        });
-
-    };
-
-
+    
     render() {
-        return <AutoComplete
-            id="PersonSelector"
-            filter={AutoComplete.fuzzyFilter}
-            dataSource={this.mapPersonToItem(this.props.persons)}
-            maxSearchResults={7}
-            onNewRequest={this.handleNewRequest}
-            onUpdateInput={ (searchText) => { this.setState({text: searchText})} }
-            searchText={this.state.text}
-        />
+        const dataSource = this.mapPersonToItem();
+        
+        return (
+            <AutoComplete
+                id="PersonSelector"
+                filter={AutoComplete.fuzzyFilter}
+                maxSearchResults={7}
+                dataSource={dataSource}
+                onNewRequest={this.handleNewRequest}
+                onUpdateInput={this.onUpdateInput}
+                searchText={this.state.text}
+            />
+        )
     }
-
-
+    
+    onUpdateInput = searchText => this.setState({text: searchText});
+	
+	mapPersonToItem = () => {
+		return this.props.persons.map(({ name, lastName }) => {
+			return {
+				text: `${lastName}, ${name}`,
+				value: (
+                    <MenuItem
+                        primaryText={lastName}
+                        secondaryText={name}
+                    />
+				)
+			}
+		});
+	};
+	
+	handleNewRequest = (chosenRequest, index) => {
+		this.props.onPersonSelected(this.props.persons[index]);
+		this.setState({ text:'' });
+	};
 }
 
 
