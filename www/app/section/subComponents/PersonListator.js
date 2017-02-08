@@ -14,38 +14,33 @@ class PersonListator extends React.Component {
         onDeletePerson : PropTypes.func.isRequired
     };
 
-
     render() {
-
-
-        const IndexButton = (index) => {
-            return (
-                <IconButton
-                    tooltip="Eliminar"
-                    tooltipPosition="top-center"
-                    onTouchTap={() => this.props.onDeletePerson(index)}
-                >
-                    <DeleteIcon/>
-                </IconButton>
-            );
-        };
-
         return (
             <List>
-                {
-                    this.props.personsToShow.map( (person, index) => {
-                        return (
-                            <ListItem key={index} primaryText={`${person.lastName} - ${person.name}`} rightIconButton={IndexButton(index)}/>
-                        )
-                    })
-                }
+                {this.props.personsToShow.map(this.renderPerson)}
             </List>
         )
-
-
     }
-
-
+    
+    renderPerson = ({ name, lastName }, index) => (
+        <ListItem
+            key={index}
+            primaryText={`${lastName} - ${name}`}
+            rightIconButton={this.getIconButton(index)}
+        />
+    );
+    
+    getIconButton = index => {
+	    return (
+            <IconButton
+                tooltip="Eliminar"
+                tooltipPosition="top-center"
+                onTouchTap={() => this.props.onDeletePerson(index)}
+            >
+                <DeleteIcon/>
+            </IconButton>
+	    );
+    };
 }
 
 

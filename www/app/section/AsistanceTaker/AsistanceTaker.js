@@ -61,9 +61,9 @@ class AsistanceTaker extends React.Component {
     
 	splitDateString = date => date.toISOString().split('T')[0];
 	
-	getAsistancesForDate = date => {
-		SuperAgent.Asistances.getByDate(this.splitDateString(date))
-            .then(({ asistances }) => this.setState({ asistances, selectedDate: date }));
+	getAsistancesForDate = selectedDate => {
+		SuperAgent.Asistances.getByDate(this.splitDateString(selectedDate))
+            .then(({ asistances }) => this.setState({ asistances, selectedDate }));
 	};
 	
 	generateAsistance = person => {

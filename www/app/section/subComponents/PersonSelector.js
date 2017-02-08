@@ -14,18 +14,16 @@ class PersonSelector extends React.Component {
     };
 
     state = {
-        text:''
+        text: ''
     };
     
     render() {
-        const dataSource = this.mapPersonToItem();
-        
         return (
             <AutoComplete
                 id="PersonSelector"
                 filter={AutoComplete.fuzzyFilter}
                 maxSearchResults={7}
-                dataSource={dataSource}
+                dataSource={this.fillDataSource()}
                 onNewRequest={this.handleNewRequest}
                 onUpdateInput={this.onUpdateInput}
                 searchText={this.state.text}
@@ -33,20 +31,18 @@ class PersonSelector extends React.Component {
         )
     }
     
-    onUpdateInput = searchText => this.setState({text: searchText});
+    onUpdateInput = text => this.setState({ text });
 	
-	mapPersonToItem = () => {
-		return this.props.persons.map(({ name, lastName }) => {
-			return {
-				text: `${lastName}, ${name}`,
-				value: (
-                    <MenuItem
-                        primaryText={lastName}
-                        secondaryText={name}
-                    />
-				)
-			}
-		});
+	fillDataSource = () => {
+		return this.props.persons.map(({ name, lastName }) => ({
+			text: `${lastName}, ${name}`,
+			value: (
+				<MenuItem
+					primaryText={lastName}
+					secondaryText={name}
+				/>
+			)
+		}));
 	};
 	
 	handleNewRequest = (chosenRequest, index) => {

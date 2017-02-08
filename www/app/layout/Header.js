@@ -2,7 +2,7 @@
  * Created by maximiliano.dimito on 1/10/2017.
  */
 import React, {PropTypes} from 'react';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
 import AsistanceTaker from '../section/AsistanceTaker/AsistanceTaker';
 import PersonManager from '../section/PersonManager/PersonManager';
@@ -13,17 +13,12 @@ const views = {
 };
 
 export default class Header extends React.Component {
+    
     static propTypes = {
         changeView: PropTypes.func.isRequired
     };
-
-    setView = (ref) => this.props.changeView(views[ref]);
-
-    showAsistanceTaker = e => this.setView("AsistanceTaker");
     
-    showPersonManager = e => this.setView("PersonManager");
-    
-    render(){
+    render() {
         return (
             <Toolbar>
                 <ToolbarGroup >
@@ -44,4 +39,10 @@ export default class Header extends React.Component {
             </Toolbar>
         )
     }
+	
+	setView = ref => this.props.changeView(views[ref]);
+	
+	showAsistanceTaker = e => this.setView("AsistanceTaker");
+	
+	showPersonManager = e => this.setView("PersonManager");
 };

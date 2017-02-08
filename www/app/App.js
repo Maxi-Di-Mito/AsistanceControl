@@ -1,7 +1,7 @@
 /**
  * Created by maximiliano.dimito on 1/10/2017.
  */
-import React, {Component} from 'react';
+import React from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -14,45 +14,32 @@ injectTapEventPlugin();
 
 
 const theme = {
-    palette:{
+    palette: {
         primary1Color: blue200,
         accent1Color: cyan700
     },
-    toolbar:{
+    toolbar: {
         backgroundColor: amber400
     }
-
 };
 
 
-export default class App extends Component{
-
-
+export default class App extends React.Component {
+    
     state = {
         view: <AsistanceTaker/>
-
     };
-
-
-    changeView = (view) =>{
-        this.setState({
-            view: view
-        });
-    };
-
-
-    render(){
-
+    
+    render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
                 <div>
                     <Header changeView={this.changeView}/>
-                    {
-                        (this.state.view)
-                    }
+                    {this.state.view}
                 </div>
             </MuiThemeProvider>
         );
     }
-
+    
+	changeView = view => this.setState({ view });
 }
