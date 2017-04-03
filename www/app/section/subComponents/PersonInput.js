@@ -5,7 +5,7 @@ import React, {PropTypes} from 'react';
 import {TextField, RaisedButton} from 'material-ui';
 
 
-class PersonInput extends React.Component{
+class PersonInput extends React.Component {
 
     static propTypes = {
         onPersonDefined: PropTypes.func.isRequired
@@ -15,33 +15,38 @@ class PersonInput extends React.Component{
         name: "",
         lastName: ""
     };
-
-    createPerson = () => {
-        this.props.onPersonDefined(this.state);
-        this.setState({
-            name: "",
-            lastName: ""
-        })
-    };
-
-
-    render(){
+    
+    render() {
+        const { name, lastName } = this.state;
+        
         return (
             <div>
                 <TextField
                     floatingLabelText="Nombre"
-                    onChange={ (event) => { this.setState({ name:event.target.value }) }}
-                    value={this.state.name}
+                    onChange={this.onNameChange}
+                    value={name}
                 />
                 <TextField
                     floatingLabelText="Apellido"
-                    onChange={(event) => { this.setState({ lastName:event.target.value }) }}
-                    value={this.state.lastName}
+                    onChange={this.onLastNameChange}
+                    value={lastName}
                 />
-                <RaisedButton label="Crear" onClick={this.createPerson} />
+                <RaisedButton
+                    label="Crear"
+                    onClick={this.createPerson}
+                />
             </div>
         )
     }
+    
+	createPerson = () => {
+		this.props.onPersonDefined(this.state);
+		this.setState({ name: "", lastName: "" });
+	};
+    
+    onNameChange = e => this.setState({ name: e.target.value });
+    
+	onLastNameChange = e => this.setState({ lastName: e.target.value });
 }
 
 
