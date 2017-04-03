@@ -1,7 +1,7 @@
 /**
  * Created by maximiliano.dimito on 1/10/2017.
  */
-import React, {Component} from 'react';
+import React from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -25,7 +25,7 @@ const theme = {
 };
 
 
-export default class App extends Component{
+export default class App extends React.Component{
 
 
     state = {

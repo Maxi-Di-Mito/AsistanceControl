@@ -39,7 +39,7 @@ routerApi.post("/persons/", (req, res) => {
 });
 
 routerApi.post('/persons/delete', (req, res) => {
-    Person.findOneAndRemove( {_id: req.body._id}, (deleted) => {
+    Person.remove( {_id: req.body._id}, (deleted) => {
         Person.find({}).then( (data) => {
             res.json({
                 response:deleted,

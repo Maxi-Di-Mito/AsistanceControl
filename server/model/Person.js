@@ -1,10 +1,10 @@
 /**
  * Created by maximiliano.dimito on 8/25/2016.
  */
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+import mongoose from 'mongoose';
+const Schema = mongoose.Schema;
 
-var Person = new Schema({
+const Person = new Schema({
     name: String,
     lastName: String
 },{
