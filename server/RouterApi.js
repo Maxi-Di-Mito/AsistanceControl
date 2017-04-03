@@ -28,7 +28,7 @@ routerApi.post("/persons/", (req, res) => {
     p.name = req.body.name;
     p.lastName = req.body.lastName;
     p.save().then((savedPerson) => {
-        Person.find({}).then(function (data){
+        Person.find({}).then( (data) => {
             res.json({
                 response: response,
                 persons: data

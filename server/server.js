@@ -19,6 +19,11 @@ app.use(express.static(path.join(__dirname, '/../www/static/')));
 app.use('/api',routerApi);
 
 app.use(serverRender);
+/*
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/../www/index.html'));
+});*/
+
 
 const port = process.env.PORT || 9001;
 

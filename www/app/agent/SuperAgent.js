@@ -31,7 +31,7 @@ const Persons = {
 
 const Asistances = {
     getAll: () => requests.get(API('/asistances/')),
-    getByDate: date => requests.get(API(`/asistances/${date}`)),
+    get: date => requests.get(API(`/asistances/${date || ''}`)),
     create: (person, date) => requests.post(API('/asistances/'), { date, person }),
     delete: asistance => requests.post(API('/asistances/delete'), { asistance })
 };
